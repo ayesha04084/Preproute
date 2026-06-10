@@ -113,4 +113,3 @@ This project highlights practical frontend engineering skills such as:
 
 ---
 
-## 📁 Project Structure
