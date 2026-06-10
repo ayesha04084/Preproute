@@ -132,18 +132,6 @@ const AddQuestions = () => {
     }
   };
 
-  // Optional Cleanup utility when leaving creation wizards context loop
-  const clearTestData = () => {
-    localStorage.removeItem("subjectName");
-    localStorage.removeItem("topicName");
-    localStorage.removeItem("subTopicName");
-    localStorage.removeItem("totalTime");
-    localStorage.removeItem("totalQuestions");
-    localStorage.removeItem("totalMarks");
-    localStorage.removeItem("testType");
-    localStorage.removeItem("testName");
-  };
-
   return (
     <div className={styles.page}>
       {/* Sidebar Left Side Panel */}
