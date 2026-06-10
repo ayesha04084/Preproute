@@ -2,6 +2,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate
 } from "react-router-dom";
 
 import Login from "./pages/Login/login";
@@ -23,6 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route
           path="/login"
           element={<Login />}
@@ -38,17 +40,6 @@ function App() {
            
           }
         />
-
-         {/* <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <Dashboard />
-              </Layout>
-            </ProtectedRoute>
-          }
-        /> */}
 
         <Route
           path="/create-test"
