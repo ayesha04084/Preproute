@@ -1,0 +1,211 @@
+$background-color: #f8f9fc;
+$primary-color: #5f6fff;
+$primary-light-color: #f3f5ff;
+$text-secondary: #8f96a3;
+$text-primary: #23262f;
+$border-color: #e6e8f0;
+$input-height: 48px;
+$border-radius: 8px;
+
+.container {
+  background: $background-color;
+  min-height: 100vh;
+  padding: 32px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: $text-secondary;
+  margin-bottom: 24px;
+}
+
+.tabs {
+  display: flex;
+  width: fit-content;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 32px;
+  background: white;
+
+  button {
+    border: none;
+    background: transparent;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 13px;
+    color: $text-secondary;
+
+    &.activeTab {
+      background: $primary-light-color;
+      color: $primary-color;
+      font-weight: 600;
+    }
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 40px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-primary;
+    margin-bottom: 8px;
+  }
+
+  input,
+  select {
+    height: $input-height;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    padding: 0 16px;
+    font-size: 14px;
+    outline: none;
+    color: $text-primary;
+    background-color: white;
+
+    &::placeholder {
+      color: #b1b5c3;
+    }
+  }
+
+  select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns="http://www.w3.org/2000/svg" width="292.4" height="292.4"%3E%3Cpath fill="%23b1b5c3" d="M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.3c0 4.8 1.8 9 5.4 12.8l133.2 133.2c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 0-5-1.9-9.2-5.5-12.8z"/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 16px top 50%;
+    background-size: 12px auto;
+    padding-right: 40px;
+  }
+}
+
+.difficultyGroup {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  height: $input-height;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: $text-primary;
+
+  input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    width: 0px;
+    height: 28px;
+    // min-width: 20px; // Fixes distortion inside flex boxes
+    // min-height: 20px;
+    border: 2px solid #b1b5c3;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    background-color: white;
+    transition: border-color 0.2s;
+
+    &::before {
+      content: "";
+      width: 14px;
+      height: 13px;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      background-color: $primary-color;
+    }
+
+    &:checked {
+      border-color: $primary-color;
+      
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.markingSection {
+  margin-top: 40px;
+}
+
+.markingTitle {
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.marks {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.markingField {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-primary;
+    margin-bottom: 8px;
+  }
+
+  input {
+    height: $input-height;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    padding: 0 16px;
+    font-size: 14px;
+    outline: none;
+    color: $text-primary;
+
+    &::placeholder {
+      color: #b1b5c3;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.cancel,
+.next {
+  width: 120px;
+  height: 44px;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.cancel {
+  background: #f4f5f9;
+  color: #5f6672;
+}
+
+.next {
+  background: $primary-color;
+  color: white;
+}

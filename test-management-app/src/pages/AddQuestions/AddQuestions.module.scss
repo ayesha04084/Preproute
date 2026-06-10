@@ -1,0 +1,538 @@
+$bg-main: #f8f9fc;
+$primary-blue: #5f6fff;
+$primary-light: #f3f5ff;
+$border-color: #e6e8f0;
+$text-dark: #23262f;
+$text-secondary: #8f96a3;
+$border-radius-card: 12px;
+$border-radius-input: 8px;
+
+.page {
+  display: flex;
+  min-height: 100vh;
+  background-color: $bg-main;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+// Left Nav Sidebar Questions Navigation 
+.sidebar {
+  width: 240px;
+  background-color: white;
+  border-right: 1px solid $border-color;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .totalQuestions {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-dark;
+    margin-bottom: 8px;
+
+    span {
+      font-weight: 600;
+      color: $primary-blue;
+    }
+  }
+
+  .questionList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .questionItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: $border-radius-input;
+    font-size: 14px;
+    color: #4a5568;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    svg {
+      color: $text-secondary;
+    }
+
+    &:hover {
+      background-color: $primary-light;
+      border-color: lighten($primary-blue, 20%);
+    }
+
+    &.activeQuestion {
+      border-color: lighten($primary-blue, 15%);
+      background-color: $primary-light;
+      color: $primary-blue;
+      font-weight: 600;
+
+      svg {
+        color: $primary-blue;
+      }
+    }
+  }
+}
+
+// Workspace Layout Content Wrapper
+.content {
+  flex: 1;
+  padding: 32px 40px;
+  background-color: $bg-main;
+}
+
+.topHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.publishBtn {
+  background-color: $primary-blue;
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: $border-radius-input;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba($primary-blue, 0.1);
+}
+
+// Context Header Info Summary Component
+.testMetaHeader {
+  background-color: white;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-card;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  position: relative;
+
+  .metaRowOne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .badge {
+    background-color: #1a202c;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .editMetaBtn {
+    background: transparent;
+    border: none;
+    color: $primary-blue;
+    cursor: pointer;
+  }
+
+  .metaTitleBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+
+    .chapterIcon {
+      font-size: 18px;
+    }
+
+    .chapterTitle {
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-dark;
+    }
+
+    .liveIndicator {
+      background-color: #059669;
+      color: white;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+  }
+
+  .metaGridDetails {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    font-size: 13px;
+    color: $text-secondary;
+
+    .boldValue {
+      color: $text-dark;
+      font-weight: 500;
+    }
+
+    .tagValue {
+      display: inline-block;
+      border: 1px solid #ebdcfc;
+      color: #7c3aed;
+      background-color: #f5f3ff;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-left: 6px;
+      font-size: 12px;
+    }
+  }
+
+  .metaStatsRight {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: $text-secondary;
+    background-color: #f8fafc;
+    padding: 6px 16px;
+    border-radius: $border-radius-input;
+    border: 1px solid #f1f5f9;
+  }
+}
+
+// Active Canvas Question Editor Card Module Structure 
+.card {
+  background-color: white;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-card;
+  padding: 32px;
+}
+
+.cardHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+
+  .questionIndexLabel {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .dropdownActionGroup {
+    display: flex;
+    gap: 12px;
+
+    .typeSelector {
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      background-color: white;
+    }
+
+    .csvBtn {
+      height: 36px;
+      padding: 0 14px;
+      background-color: white;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      color: $text-secondary;
+    }
+  }
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+// Custom Rich Text Strip Area
+.editorToolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid $border-color;
+  border-bottom: none;
+  background-color: #fafafa;
+  padding: 6px 12px;
+  border-top-left-radius: $border-radius-input;
+  border-top-right-radius: $border-radius-input;
+
+  button {
+    background: transparent;
+    border: none;
+    width: 28px;
+    height: 28px;
+    display: inline-grid;
+    place-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #64748b;
+
+    &:hover {
+      background-color: #f1f5f9;
+      color: $text-dark;
+    }
+  }
+}
+
+.questionInputBox {
+  width: 100%;
+  min-height: 140px;
+  border: 1px solid $border-color;
+  border-bottom-left-radius: $border-radius-input;
+  border-bottom-right-radius: $border-radius-input;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  outline: none;
+  resize: vertical;
+  color: $text-dark;
+  margin-bottom: 32px;
+
+  &::placeholder {
+    color: #cbd5e1;
+  }
+}
+
+.sectionSubHeading {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: 16px;
+}
+
+// Custom Radio Input Rows Structure Layout
+.optionsWrapperStack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.optionInputFieldRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  width: 100%;
+
+  .radioOptionSelectionCircle {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      &:checked + .customRadioCircle {
+        border-color: $primary-blue;
+        
+        &::after {
+          transform: scale(1);
+        }
+      }
+    }
+
+    .customRadioCircle {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #b1b5c3;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      transition: border-color 0.2s ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: $primary-blue;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        margin-top: -5px;
+        margin-left: -5px;
+        transform: scale(0);
+        transition: transform 0.15s ease-in-out;
+      }
+    }
+  }
+
+  .optionInputTextElement {
+    flex: 1;
+    height: 48px;
+    border: 1px solid #e2e8f0;
+    border-radius: $border-radius-input;
+    padding: 0 48px 0 16px;
+    font-size: 14px;
+    color: $text-dark;
+    background-color: white;
+    outline: none;
+
+    &::placeholder {
+      color: #cbd5e1;
+    }
+
+    &:focus {
+      border-color: lighten($primary-blue, 15%);
+    }
+  }
+
+  .removeOptionBtn {
+    position: absolute;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+      color: #ef4444;
+    }
+  }
+}
+
+// Explanation Solution Subsection area Block Layout
+.explanationSectionBlock {
+  margin-bottom: 40px;
+
+  .explanationTextarea {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid #e2e8f0;
+    border-radius: $border-radius-input;
+    padding: 16px;
+    font-size: 14px;
+    outline: none;
+    resize: vertical;
+    color: $text-dark;
+
+    &::placeholder {
+      color: #cbd5e1;
+    }
+  }
+}
+
+// Question Settings Section Box Component Config Elements
+.questionSettingsSection {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 32px;
+  margin-bottom: 40px;
+
+  .settingsSectionTitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-secondary;
+    margin-bottom: 20px;
+  }
+}
+
+.settingsGridRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.settingField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-dark;
+  }
+
+  select {
+    height: 44px;
+    border: 1px solid #e2e8f0;
+    border-radius: $border-radius-input;
+    padding: 0 14px;
+    font-size: 13px;
+    color: $text-secondary;
+    background-color: white;
+    outline: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns="http://www.w3.org/2000/svg" width="292.4" height="292.4"%3E%3Cpath fill="%23b1b5c3" d="M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.3c0 4.8 1.8 9 5.4 12.8l133.2 133.2c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 0-5-1.9-9.2-5.5-12.8z"/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 14px top 50%;
+    background-size: 10px auto;
+  }
+}
+
+// Action Controls Strip Controls Footer Area Layout Trigger Box Row
+.actionsFooterStrip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 24px;
+}
+
+.exitBtn {
+  background-color: #fecaca;
+  color: #ef4444;
+  border: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: $border-radius-input;
+  cursor: pointer;
+}
+
+.rightActionControls {
+  display: flex;
+  gap: 16px;
+}
+
+.addAnotherBtn,
+.saveBtn {
+  height: 44px;
+  border-radius: $border-radius-input;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 24px;
+}
+
+.addAnotherBtn {
+  background-color: white;
+  border: 1px solid $primary-blue;
+  color: $primary-blue;
+}
+
+.saveBtn {
+  background-color: $primary-blue;
+  color: white;
+  border: none;
+  box-shadow: 0 2px 4px rgba($primary-blue, 0.15);
+}
