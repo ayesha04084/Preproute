@@ -109,111 +109,57 @@ useEffect(() => {
   //   }
   // };
 
- const loadTest = async (
-  subjectsData: Subject[]
-) => {
+const loadTest = async (subjectsData: Subject[]) => {
   try {
-    const test =
-      await getTestById(
-        testId!
-      );
+    const test = await getTestById(testId!);
 
-    console.log(
-      "FULL TEST:",
-      test
+    console.log("FULL TEST:", test);
+    console.log("TOPICS:", test.topics);
+
+    const selectedSubject = subjectsData.find(
+      (item) => item.name === test.subject
     );
 
-    console.log(
-      "TOPICS:",
-      test.topics
-    );
+    if (!selectedSubject) return;
 
-    const selectedSubject =
-      subjectsData.find(
-        (item) =>
-          item.name ===
-          test.subject
-      );
-
-    if (!selectedSubject)
-      return;
-
-    const topicsData =
-      await getTopicsBySubject(
-        selectedSubject.id
-      );
-
+    const topicsData = await getTopicsBySubject(selectedSubject.id);
     setTopics(topicsData);
 
     // Convert topic names -> topic ids
-    const selectedTopicIds =
-      topicsData
-        .filter(
-          (topic: Topic) =>
-            test.topics?.includes(
-              topic.name
-            )
-        )
-        .map(
-          (topic: Topic) =>
-            topic.id
-        );
+    const selectedTopicIds = topicsData
+      .filter((topic: Topic) => test.topics?.includes(topic.name))
+      .map((topic: Topic) => topic.id);
 
     let subTopicsData = [];
+    let selectedSubTopicIds: string[] = []; // 👈 Declare an array to hold the matched IDs
 
-    if (
-      selectedTopicIds.length >
-      0
-    ) {
-      subTopicsData =
-        await getSubTopics(
-          selectedTopicIds
-        );
+    if (selectedTopicIds.length > 0) {
+      subTopicsData = await getSubTopics(selectedTopicIds);
+      setSubTopics(subTopicsData);
 
-      setSubTopics(
-        subTopicsData
-      );
+      // 💡 FIX IS HERE: Convert sub_topic names into sub_topic UUIDs
+      selectedSubTopicIds = subTopicsData
+        .filter((sub: SubTopic) => test.sub_topics?.includes(sub.name))
+        .map((sub: SubTopic) => sub.id);
     }
 
     setFormData({
       name: test.name,
-
-      subject:
-        selectedSubject.id,
-
+      subject: selectedSubject.id,
       type: test.type,
+      topics: selectedTopicIds,
+      
+      // 💡 ASSIGN THE PARSED UUIDs INSTEAD OF RAW STRING NAMES
+      sub_topics: selectedSubTopicIds.length > 0 ? selectedSubTopicIds : (test.sub_topics || []),
 
-      topics:
-        selectedTopicIds,
-
-      sub_topics:
-        test.sub_topics ||
-        [],
-
-      difficulty:
-        test.difficulty,
-
-      total_time:
-        test.total_time,
-
-      correct_marks:
-        test.correct_marks,
-
-      wrong_marks:
-        test.wrong_marks,
-
-      unattempt_marks:
-        test.unattempt_marks,
-
-      total_questions:
-        test.total_questions,
-
-      total_marks:
-        test.total_marks,
-
-      status:
-        test.status ||
-        "draft",
+      difficulty: test.difficulty,
+      total_time: test.total_time,
+      correct_marks: test.correct_marks,
+      wrong_marks: test.wrong_marks,
+      unattempt_marks: test.unattempt_marks,
+      total_questions: test.total_questions,
+      total_marks: test.total_marks,
+      status: test.status || "draft",
     });
   } catch (error) {
     console.log(error);

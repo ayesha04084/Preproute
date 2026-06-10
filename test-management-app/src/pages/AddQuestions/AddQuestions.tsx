@@ -120,8 +120,6 @@ const AddQuestions = () => {
         (question: any) => question.id
       );
 
-      clearTestData(); // Optional clear up hook invocation
-
       localStorage.setItem(
         "questionIds",
         JSON.stringify(questionIds)
